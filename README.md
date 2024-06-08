@@ -23,7 +23,7 @@ Make sure to install the necessary dependencies using the following command:
 pip install llama_index pydantic python-dotenv
 ```
 
-Id you find any dependancy error install all dependancies from requirements.txt:
+If you find any dependancy error install all dependancies from requirements.txt:
 ```bash
 pip install -r requirements.txt
 ```
