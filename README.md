@@ -1,167 +1,173 @@
-## Overview
+# AI Code Assistant
 
-This project provides an intelligent code generation and documentation tool utilizing natural language processing. The tool is designed to read and analyze code files, generate new code based on user prompts, and provide detailed descriptions and filenames for the generated code. The implementation leverages the `llama_index` library and models from `Ollama`.
+A Streamlit-based application providing AI-powered code assistance through multiple language models and vector search capabilities. The system leverages various LLMs for different code-related tasks while maintaining context through vector-based document indexing.
 
-## Project Structure
+## Features
 
-The project consists of three main Python files:
+### Core Capabilities
+- **Multi-Model AI Processing**
+  - Mistral (Ollama)
+  - CodeLlama (Ollama)
+  - LLaMA 3 (Groq)
+  - GPT-4 (Optional OpenAI integration)
 
-1. **main.py**: The primary script that sets up the models, reads documents, and manages the user interaction loop.
-2. **code_reader.py**: Defines a function to read code files and a tool to interface with the main script.
-3. **prompts.py**: Contains context and template definitions used for generating prompts.
+- **Vector-Based Document Management**
+  - Persistent index storage
+  - Real-time index updates
+  - Context-aware querying
+  - Efficient document retrieval
 
-## Dependencies
+- **Task Processing**
+  - Production code generation
+  - Code review and analysis
+  - Documentation generation
+  - Test case creation
+  - Contextual querying
 
-- `llama_index`
-- `pydantic`
-- `dotenv`
-- `os`
-- `ast`
+### Technical Implementation
+- Streamlit-based user interface
+- Hugging Face embedding model integration
+- Vector store indexing for document management
+- Multi-model task routing system
+- Persistent storage management
 
-Make sure to install the necessary dependencies using the following command:
+## Installation
+
+### System Requirements
+- Python 3.8+
+- Ollama installation
+- Groq API access
+- Optional: OpenAI API access
+
+### Setup Process
+1. Repository Clone:
 ```bash
-pip install llama_index pydantic python-dotenv
+git clone https://github.com/AKKI0511/AI-Code-Generator.git
+cd AI-Code-Generator
 ```
 
-If you find any dependancy error install all dependancies from requirements.txt:
+2. Dependency Installation:
 ```bash
 pip install -r requirements.txt
 ```
 
-### NOTE: 
--  To use Ollama you will have to locally download it from here: https://ollama.com/
-You can also use any other model from langchain (langchain-groq/langchain-openai).
--  You will also require an API key from llama-cloud: https://cloud.llamaindex.ai/login
+3. Environment Configuration:
+```env
+GROQ_API_KEY=your_groq_api_key
+OPENAI_API_KEY=your_openai_api_key  # Optional
+```
+
+### Execution
+Launch the application:
+```bash
+streamlit run main.py
+```
+
+## Architecture
+
+### Directory Structure
+```
+project/
+├── main.py                 # Application entry point
+├── app.py                  # Core application logic
+├── constants.py            # System constants
+├── requirements.txt        # Dependencies
+├── components/            # UI components
+├── models/               # AI models and core logic
+├── services/            # Business logic
+└── utils/              # Utility functions
+```
+
+### Component Details
+- **main.py**: Application initialization and configuration
+- **app.py**: Streamlit interface and user interaction handling
+- **code_assistant.py**: Core AI processing and task management
+- **task_service.py**: Task-specific business logic
+- **session_state.py**: Application state management
+
+## Task Specifications
+
+### Code Generation
+Input: Natural language description
+Output: Production-ready Python code
+Features:
+- Error handling implementation
+- Type hint integration
+- Documentation generation
+- PEP standard compliance
+- Performance optimization
+
+### Code Review
+Analysis Components:
+- Code quality assessment
+- Bug identification
+- Performance analysis
+- Security evaluation
+- Optimization recommendations
+
+### Documentation Generation
+Output Components:
+- System overview
+- Implementation details
+- API documentation
+- Usage examples
+- Parameter specifications
+
+### Test Generation
+Capabilities:
+- Pytest framework integration
+- Edge case coverage
+- Error scenario testing
+- Assertion implementation
+- Test documentation
+
+### Query Processing
+Features:
+- Context-aware responses
+- Source citation
+- Code comprehension
+- Implementation guidance
+- Best practice recommendations
 
 ## Configuration
 
-Create a `.env` file in the root directory of the project to store environment variables. The `.env` file should contain any necessary configuration details such as API keys or other sensitive information.
-
-## Usage
-
-### 1. Initialize and Load Environment Variables
-
-The script starts by loading environment variables from the `.env` file:
-```python
-from dotenv import load_dotenv
-load_dotenv()
+### Environment Variables
+```
+GROQ_API_KEY          # Required for LLaMA 3
+OPENAI_API_KEY        # Optional for GPT-4
+LLAMA_CLOUD_API_KEY   # Optional for cloud services
 ```
 
-### 2. Model Initialization
+### Model Configuration
+- Embedding Model: BAAI/bge-small-en-v1.5
+- Vector Store: LlamaIndex implementation
+- Node Parser: SentenceSplitter configuration
 
-Initialize the `Ollama` models for document processing and code-related tasks:
-```python
-llm = Ollama(model="mistral", request_timeout=30.0)
-code_llm = Ollama(model="codellama")
-```
+## Usage Guidelines
 
-### 3. Document Reading and Processing
+### Task Selection
+1. Choose task type from available options
+2. Input task-specific requirements
+3. Review generated output
+4. Access saved files in output directory
 
-Load documents from the `./data` directory:
-```python
-documents = SimpleDirectoryReader("./data", file_extractor={".pdf": parser}).load_data()
-embed_model = resolve_embed_model("local:BAAI/bge-m3")
-vector_index = VectorStoreIndex.from_documents(documents, embed_model=embed_model)
-query_engine = vector_index.as_query_engine(llm=llm)
-```
+### Document Management
+1. Upload relevant files via UI
+2. System automatically indexes content
+3. Access indexed content via queries
+4. Refresh index for updates
 
-### 4. Define Tools
+## Development
 
-Define tools for the `ReActAgent`, including a query engine tool and a custom code reader:
-```python
-tools = [
-    QueryEngineTool(
-        query_engine=query_engine,
-        metadata=ToolMetadata(
-            name="api_documentation",
-            description="this gives documentation about code for an API. Use this for reading docs for the API",
-        ),
-    ),
-    code_reader,
-]
-```
+### Extension Points
+- Model integration interface
+- Task type implementation
+- UI component development
+- Service layer modification
 
-### 5. Agent and Output Parser Setup
-
-Set up the `ReActAgent` and define the output parser using a Pydantic model:
-```python
-agent = ReActAgent.from_tools(tools, llm=code_llm, verbose=True, context=context)
-
-class CodeOutput(BaseModel):
-    code: str
-    description: str
-    filename: str
-
-parser = PydanticOutputParser(CodeOutput)
-json_prompt_str = parser.format(code_parser_template)
-json_prompt_tmpl = PromptTemplate(json_prompt_str)
-output_pipeline = QueryPipeline(chain=[json_prompt_tmpl, llm])
-```
-
-### 6. Main Loop for User Interaction
-
-Start the main loop to process user inputs and generate code:
-```python
-while (prompt := input("Enter a prompt (q to quit): ")) != "q":
-    retries = 0
-
-    while retries < 3:
-        try:
-            result = agent.query(prompt)
-            next_result = output_pipeline.run(response=result)
-            cleaned_json = ast.literal_eval(str(next_result).replace("assistant:", ""))
-            break
-        except Exception as e:
-            retries += 1
-            print(f"Error occurred, retry #{retries}:", e)
-
-    if retries >= 3:
-        print("Unable to process request, try again...")
-        continue
-
-    print("Code generated")
-    print(cleaned_json["code"])
-    print("\n\nDescription:", cleaned_json["description"])
-
-    filename = cleaned_json["filename"]
-
-    try:
-        with open(os.path.join("output", filename), "w") as f:
-            f.write(cleaned_json["code"])
-        print("Saved file", filename)
-    except:
-        print("Error saving file…")
-```
-
-## File Details
-
-### main.py
-- **Function**: Sets up models, reads documents, manages tools, and processes user inputs to generate code.
-- **Key Components**:
-  - Loading environment variables.
-  - Initializing LLM models.
-  - Reading and processing documents.
-  - Defining tools for the ReAct agent.
-  - Setting up a user interaction loop to generate and save code.
-
-### code_reader.py
-- **Function**: Provides a tool to read and return the contents of code files.
-- **Key Components**:
-  - `code_reader_func(file_name)`: Reads the specified file and returns its content.
-  - `code_reader`: A `FunctionTool` object that utilizes `code_reader_func`.
-
-### prompts.py
-- **Function**: Contains context and template definitions used for generating prompts.
-- **Key Components**:
-  - `context`: Describes the primary role of the agent.
-  - `code_parser_template`: A template for parsing code generation responses into structured JSON.
-
-## Running the Project
-
-1. Ensure all dependencies are installed.
-2. Place your documents in the `./data` directory.
-3. Start the main script:
-```bash
-python main.py
-```
-4. Enter prompts to generate code or analyze existing code files. Enter `q` to quit the program.
+### Best Practices
+- Follow PEP standards
+- Implement comprehensive error handling
+- Maintain type hints
+- Document new features
+- Include unit tests

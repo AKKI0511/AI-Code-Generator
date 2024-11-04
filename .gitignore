@@ -1,3 +1,10 @@
 .env
 env
+models/code_advisor.py
+models/code_profiler.py
+models/smart_migration_assistant.py
+models/test_migration.py
+streamlit_code_assistant.py
+output/
+storage/
 __pycache__
