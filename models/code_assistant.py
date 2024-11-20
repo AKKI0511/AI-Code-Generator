@@ -28,6 +28,16 @@ import os
 # Import helper classes from local file
 # from code_profiler import CodeProfiler
 # from code_advisor import CodeRefactorAnalyzer
+import path
+import sys
+
+# directory reach
+directory = path.Path(__file__).absolute()
+
+# setting path
+sys.path.append(directory.parent.parent)
+
+# importing
 from constants import TaskType
 
 # Load environment variables
@@ -71,6 +81,8 @@ class CodeAssistant:
         self.output_dir = Path(output_dir)
         self.persist_dir = Path(persist_dir)
         self.openai_api_key = openai_api_key
+        self.groq_api_key = GROQ_API_KEY
+        self.llama_cloud_api_key = LLAMA_CLOUD_API_KEY
 
         # Create necessary directories
         for directory in [self.data_dir, self.output_dir, self.persist_dir]:
@@ -107,7 +119,7 @@ class CodeAssistant:
             self.llms = {
                 "mistral": Ollama(model="mistral:latest", request_timeout=3600),
                 "codellama": Ollama(model="codellama", request_timeout=3600),
-                "llama": Groq(model="llama-3.1-70b-versatile", api_key=GROQ_API_KEY)
+                "llama": Groq(model="llama-3.1-8b-instant", api_key=GROQ_API_KEY)
             }
 
             # Add OpenAI if API key is provided

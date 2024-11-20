@@ -12,6 +12,14 @@ pylint
 line_profiler
 memory_profiler
 streamlit
+libcst
+path
+pytest
+pytest-asyncio
+langchain
+langchain-groq
+langchain-community
+reportlab
 # llama-index-core
 # llama-index-readers-file
 # llama-index-llms-openai
