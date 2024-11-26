@@ -4,7 +4,9 @@ models/code_advisor.py
 models/code_profiler.py
 models/smart_migration_assistant.py
 models/test_migration.py
+models/vulnerability_scanner/data
 streamlit_code_assistant.py
 output/
 storage/
+temp_git_repo/
 __pycache__

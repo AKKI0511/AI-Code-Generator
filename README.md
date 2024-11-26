@@ -1,6 +1,6 @@
 # AI Code Assistant
 
-A Streamlit-based application providing AI-powered code assistance through multiple language models and vector search capabilities. The system leverages various LLMs for different code-related tasks while maintaining context through vector-based document indexing.
+A sophisticated Streamlit-based application offering AI-powered code assistance and security scanning through multiple language models and advanced vector search capabilities. The system leverages various LLMs for different code-related tasks while maintaining context through vector-based document indexing.
 
 ## Features
 
@@ -23,6 +23,14 @@ A Streamlit-based application providing AI-powered code assistance through multi
   - Documentation generation
   - Test case creation
   - Contextual querying
+
+### Security Scanner
+- **Advanced Code Security Scanning**
+  - Quick, Deep, and Custom scan options
+  - Comprehensive vulnerability detection
+  - Git repository scanning with authentication support
+  - Detailed vulnerability reports with severity filters
+  - Export scan results in JSON or PDF formats
 
 ### Technical Implementation
 - Streamlit-based user interface
@@ -88,8 +96,8 @@ project/
 ## Task Specifications
 
 ### Code Generation
-Input: Natural language description
-Output: Production-ready Python code
+Input: Natural language description  
+Output: Production-ready Python code  
 Features:
 - Error handling implementation
 - Type hint integration
@@ -128,6 +136,23 @@ Features:
 - Code comprehension
 - Implementation guidance
 - Best practice recommendations
+
+## Security Scanner
+
+### Scan Options
+- **Quick Scan**: Basic security checks
+- **Deep Scan**: Comprehensive analysis
+- **Custom Scan**: Configure specific checks
+
+### Input Methods
+- **Upload Files**: Scan uploaded code files
+- **Scan Code Snippet**: Direct code input for scanning
+- **Git Repository**: Scan code from a Git repository with authentication support
+
+### Scan Results
+- Detailed vulnerability reports with severity filters
+- Export options in JSON or PDF formats
+- Historical scan data with trend analysis
 
 ## Configuration
 

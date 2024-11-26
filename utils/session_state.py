@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import List, Dict, Any
 import streamlit as st
 from constants import TaskType
+from models.vulnerability_scanner.helper import SecurityScanResult
 
 @dataclass
 class ChatMessage:
@@ -11,7 +12,7 @@ class ChatMessage:
     result: Dict[str, Any] = None
 
 class SessionState:
-    @staticmethod
+    
     def initialize():
         if 'chat_history' not in st.session_state:
             st.session_state.chat_history = []
@@ -25,8 +26,17 @@ class SessionState:
             st.session_state.user_input_processed = False
         if "rerun_trigger" not in st.session_state:
             st.session_state.rerun_trigger = False
+        if "active_tab" not in st.session_state:
+            st.session_state.active_tab = "Code Assistant"
+        if "scan_history" not in st.session_state:
+            st.session_state.scan_history = []
+        if "current_scan_id" not in st.session_state:
+            st.session_state.current_scan_id = None
+        if "filter_severity" not in st.session_state:
+            st.session_state.filter_severity = ["High", "Medium", "Low"]
+        if "scan_result" not in st.session_state:
+            st.session_state.scan_result = None
 
-    @staticmethod
     def clear_chat_history():
         st.session_state.chat_history = []
         st.session_state.rerun_trigger = not st.session_state.rerun_trigger
