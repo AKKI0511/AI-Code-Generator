@@ -1,0 +1,135 @@
+/* performance_report.css */
+/* Dark-themed CSS for better readability in low-light conditions */
+@page {
+    margin: 2cm;
+    @top-center {
+        content: "Python Performance Analysis Report";
+    }
+    @bottom-center {
+        content: "Page " counter(page) " of " counter(pages);
+    }
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #ffffff; /* White text for better contrast */
+    background-color: #1e1e1e; /* Dark background */
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #2a2a2a; /* Slightly lighter background for the container */
+    padding: 20px;
+    border-radius: 8px; /* Rounded corners for a modern look */
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #444; /* Darker border */
+}
+
+.header h1 {
+    color: #00bfff; /* Bright blue for headers */
+    margin: 0;
+    font-size: 24px;
+}
+
+.metadata {
+    color: #b0b0b0; /* Light gray for metadata */
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #444; /* Dark border */
+    break-inside: avoid;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.section h2 {
+    color: #00bfff; /* Bright blue for section headers */
+    margin-top: 0;
+    font-size: 20px;
+    border-bottom: 1px solid #444; /* Darker border */
+    padding-bottom: 5px;
+}
+
+.narrative {
+    background-color: #333; /* Darker background for narrative */
+    border-left: 4px solid #00bfff; /* Bright blue left border */
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.metric-card {
+    background: #444; /* Darker background for metric cards */
+    padding: 10px;
+    border: 1px solid #555; /* Slightly lighter border */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.metric-value {
+    font-size: 18px;
+    font-weight: bold;
+    color: #00bfff; /* Bright blue for metric values */
+}
+
+.issues-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.issue-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #444; /* Dark border */
+    break-inside: avoid;
+    border-radius: 5px; /* Rounded corners */
+}
+
+.priority-high {
+    border-left: 4px solid #ef4444; /* Red for high priority */
+}
+
+.priority-medium {
+    border-left: 4px solid #eab308; /* Yellow for medium priority */
+}
+
+.priority-low {
+    border-left: 4px solid #22c55e; /* Green for low priority */
+}
+
+.code-block {
+    background: #222; /* Dark background for code blocks */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #444; /* Dark border */
+    white-space: pre-wrap;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    break-inside: avoid;
+}
+
+.impact-summary {
+    margin-top: 10px;
+    padding: 5px;
+    background: #333; /* Darker background for impact summary */
+    font-size: 14px;
+}

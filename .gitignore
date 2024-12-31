@@ -6,7 +6,12 @@ models/smart_migration_assistant.py
 models/test_migration.py
 models/vulnerability_scanner/data
 streamlit_code_assistant.py
+dependency_cache.json
+performance_metrics.json
 output/
+reports/
 storage/
+temp/
 temp_git_repo/
 __pycache__
+__init__.py

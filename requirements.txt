@@ -21,6 +21,12 @@ langchain-groq
 langchain-community
 reportlab
 plotly
+matplotlib
+aiofiles
+poetry
+pipenv
+pipreqs
+loguru
 # llama-index-core
 # llama-index-readers-file
 # llama-index-llms-openai

@@ -1,75 +1,79 @@
 # AI Code Assistant
 
-A sophisticated Streamlit-based application offering AI-powered code assistance and security scanning through multiple language models and advanced vector search capabilities. The system leverages various LLMs for different code-related tasks while maintaining context through vector-based document indexing.
+A sophisticated Streamlit-based application that delivers AI-powered code assistance and security scanning. By leveraging multiple language models and advanced vector search capabilities, the system provides seamless and context-aware support for various code-related tasks.
+
+---
 
 ## Features
 
 ### Core Capabilities
 - **Multi-Model AI Processing**
-  - Mistral (Ollama)
-  - CodeLlama (Ollama)
-  - LLaMA 3 (Groq)
-  - GPT-4 (Optional OpenAI integration)
+  - Supports Mistral (Ollama), CodeLlama (Ollama), LLaMA 3 (Groq), and GPT-4 (optional OpenAI integration).
 
 - **Vector-Based Document Management**
-  - Persistent index storage
-  - Real-time index updates
-  - Context-aware querying
-  - Efficient document retrieval
+  - Persistent index storage and real-time updates.
+  - Context-aware querying for efficient document retrieval.
 
 - **Task Processing**
-  - Production code generation
-  - Code review and analysis
-  - Documentation generation
-  - Test case creation
-  - Contextual querying
+  - Production code generation.
+  - Comprehensive code review and analysis.
+  - Automated documentation and test case creation.
+  - Contextual and intelligent querying.
+
+- **Profiler**
+  - Real-time performance monitoring and optimization suggestions.
+  - Dependency management and detailed reporting.
+  - AI-powered optimization for Python code.
 
 ### Security Scanner
 - **Advanced Code Security Scanning**
-  - Quick, Deep, and Custom scan options
-  - Comprehensive vulnerability detection
-  - Git repository scanning with authentication support
-  - Detailed vulnerability reports with severity filters
-  - Export scan results in JSON or PDF formats
+  - Quick, deep, and custom scan options.
+  - Extensive vulnerability detection.
+  - Git repository scanning with authentication support.
+  - Detailed reports with severity-based filtering.
+  - Export results in JSON or PDF formats.
 
 ### Technical Implementation
-- Streamlit-based user interface
-- Hugging Face embedding model integration
-- Vector store indexing for document management
-- Multi-model task routing system
-- Persistent storage management
+- Streamlit-based intuitive user interface.
+- Hugging Face embedding model for vector search.
+- Persistent vector store indexing for document management.
+- Multi-model task routing system for optimized performance.
+- Integrated Profiler for performance monitoring and optimization.
+
+---
 
 ## Installation
 
-### System Requirements
+### Prerequisites
 - Python 3.8+
-- Ollama installation
-- Groq API access
-- Optional: OpenAI API access
+- Installed dependencies for Ollama and Groq APIs.
+- Optional: OpenAI API access for GPT-4.
 
-### Setup Process
-1. Repository Clone:
-```bash
-git clone https://github.com/AKKI0511/AI-Code-Generator.git
-cd AI-Code-Generator
-```
+### Setup
 
-2. Dependency Installation:
-```bash
-pip install -r requirements.txt
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/AKKI0511/AI-Code-Generator.git
+   cd AI-Code-Generator
+   ```
 
-3. Environment Configuration:
-```env
-GROQ_API_KEY=your_groq_api_key
-OPENAI_API_KEY=your_openai_api_key  # Optional
-```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Execution
-Launch the application:
-```bash
-streamlit run main.py
-```
+3. Configure environment variables:
+   ```env
+   GROQ_API_KEY=your_groq_api_key
+   OPENAI_API_KEY=your_openai_api_key  # Optional
+   ```
+
+4. Launch the application:
+   ```bash
+   streamlit run main.py
+   ```
+
+---
 
 ## Architecture
 
@@ -80,119 +84,131 @@ project/
 ├── app.py                  # Core application logic
 ├── constants.py            # System constants
 ├── requirements.txt        # Dependencies
-├── components/            # UI components
-├── models/               # AI models and core logic
-├── services/            # Business logic
-└── utils/              # Utility functions
+├── components/             # UI components
+├── models/                 # AI models and core logic
+├── services/               # Business logic
+└── utils/                  # Utility functions
 ```
 
-### Component Details
-- **main.py**: Application initialization and configuration
-- **app.py**: Streamlit interface and user interaction handling
-- **code_assistant.py**: Core AI processing and task management
-- **task_service.py**: Task-specific business logic
-- **session_state.py**: Application state management
+### Component Overview
+- **`main.py`**: Initializes and configures the application.
+- **`app.py`**: Manages the Streamlit interface and user interaction.
+- **`code_assistant.py`**: Core AI processing and task orchestration.
+- **`task_service.py`**: Task-specific business logic.
+- **`session_state.py`**: Manages application states across sessions.
 
-## Task Specifications
+---
+
+## Functional Specifications
 
 ### Code Generation
-Input: Natural language description  
-Output: Production-ready Python code  
-Features:
-- Error handling implementation
-- Type hint integration
-- Documentation generation
-- PEP standard compliance
-- Performance optimization
+- **Input**: Natural language description.
+- **Output**: Production-ready Python code.
+- **Features**:
+  - Implements error handling and type hints.
+  - Ensures PEP compliance and performance optimization.
+  - Auto-generates documentation.
 
 ### Code Review
-Analysis Components:
-- Code quality assessment
-- Bug identification
-- Performance analysis
-- Security evaluation
-- Optimization recommendations
+- **Capabilities**:
+  - Evaluates code quality and identifies bugs.
+  - Analyzes performance and security.
+  - Provides optimization recommendations.
+
+### Profiler
+- **Capabilities**:
+  - Monitors execution time, memory usage, and CPU utilization.
+  - Provides AI-powered optimization suggestions.
+  - Generates detailed performance reports.
 
 ### Documentation Generation
-Output Components:
-- System overview
-- Implementation details
-- API documentation
-- Usage examples
-- Parameter specifications
+- **Output Components**:
+  - System overviews, implementation details, API documentation, and usage examples.
+  - Parameter specifications with clear formatting.
 
-### Test Generation
-Capabilities:
-- Pytest framework integration
-- Edge case coverage
-- Error scenario testing
-- Assertion implementation
-- Test documentation
+### Test Case Creation
+- **Features**:
+  - Generates test cases using Pytest framework.
+  - Covers edge cases, error scenarios, and assertions.
+  - Includes test documentation.
 
 ### Query Processing
-Features:
-- Context-aware responses
-- Source citation
-- Code comprehension
-- Implementation guidance
-- Best practice recommendations
+- **Highlights**:
+  - Provides context-aware responses with source citation.
+  - Aids code comprehension and implementation guidance.
+  - Recommends best practices.
+
+---
 
 ## Security Scanner
 
 ### Scan Options
-- **Quick Scan**: Basic security checks
-- **Deep Scan**: Comprehensive analysis
-- **Custom Scan**: Configure specific checks
+- **Quick Scan**: Performs basic security checks.
+- **Deep Scan**: Executes comprehensive analysis.
+- **Custom Scan**: Allows user-defined checks.
 
 ### Input Methods
-- **Upload Files**: Scan uploaded code files
-- **Scan Code Snippet**: Direct code input for scanning
-- **Git Repository**: Scan code from a Git repository with authentication support
+- Upload code files or input code snippets directly.
+- Scan Git repositories with authentication.
 
-### Scan Results
-- Detailed vulnerability reports with severity filters
-- Export options in JSON or PDF formats
-- Historical scan data with trend analysis
+### Output
+- Generates detailed vulnerability reports.
+- Supports export options in JSON and PDF formats.
+- Tracks historical data for trend analysis.
+
+---
 
 ## Configuration
 
 ### Environment Variables
 ```
-GROQ_API_KEY          # Required for LLaMA 3
+GROQ_API_KEY          # Required for LLaMA 3 integration
 OPENAI_API_KEY        # Optional for GPT-4
-LLAMA_CLOUD_API_KEY   # Optional for cloud services
+LLAMA_CLOUD_API_KEY   # Optional for cloud-based services
 ```
 
 ### Model Configuration
-- Embedding Model: BAAI/bge-small-en-v1.5
-- Vector Store: LlamaIndex implementation
-- Node Parser: SentenceSplitter configuration
+- **Embedding Model**: BAAI/bge-small-en-v1.5.
+- **Vector Store**: LlamaIndex for efficient indexing.
+- **Node Parser**: Configured with SentenceSplitter for optimal parsing.
 
-## Usage Guidelines
+---
+
+## Usage Instructions
 
 ### Task Selection
-1. Choose task type from available options
-2. Input task-specific requirements
-3. Review generated output
-4. Access saved files in output directory
+1. Choose the desired task from the available options.
+2. Input the task-specific details or requirements.
+3. Review and refine the generated output.
+4. Access saved outputs from the designated directory.
 
 ### Document Management
-1. Upload relevant files via UI
-2. System automatically indexes content
-3. Access indexed content via queries
-4. Refresh index for updates
+1. Upload documents via the user interface.
+2. Allow the system to index content automatically.
+3. Query the indexed content using natural language.
+4. Refresh indexes as needed to include new data.
 
-## Development
+---
 
-### Extension Points
-- Model integration interface
-- Task type implementation
-- UI component development
-- Service layer modification
+## Development Guidelines
+
+### Extensibility
+- Integrate additional models through a modular interface.
+- Add new task types with minimal disruption to existing architecture.
+- Enhance UI components for improved usability.
 
 ### Best Practices
-- Follow PEP standards
-- Implement comprehensive error handling
-- Maintain type hints
-- Document new features
-- Include unit tests
+- Adhere to PEP standards for code quality.
+- Implement robust error handling mechanisms.
+- Use type hints for better readability and debugging.
+- Document all new features and include unit tests.
+
+---
+
+## Contributions
+Contributions are welcome! Please submit pull requests or open issues to improve the project.
+
+---
+
+## License
+This project is licensed under the MIT License. See `LICENSE` for details.
