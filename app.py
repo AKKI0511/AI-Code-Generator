@@ -1,5 +1,6 @@
 import streamlit as st
 from constants import TaskType, UIConstants
+from tools.profiler_page import ProfilerPage
 from tools.security_scanner_page import SecurityScannerPage
 from utils.session_state import SessionState
 from services.task_service import TaskService
@@ -27,8 +28,8 @@ class CodeAssistantApp:
         """Set up the sidebar navigation using a radio button to switch between pages."""
         st.sidebar.radio(
             "# Select Page",
-            options=["Code Assistant", "Security Scanner"],
-            index=0 if st.session_state.active_tab == "Code Assistant" else 1,
+            options=["Code Assistant", "Security Scanner", "Code Profiler"],
+            index=0 if st.session_state.active_tab == "Code Assistant" else (1 if st.session_state.active_tab == "Security Scanner" else 2),
             key="active_tab",
             format_func=lambda x: x,
         )
@@ -138,3 +139,5 @@ class CodeAssistantApp:
             self.render_main_content()
         elif st.session_state.active_tab == "Security Scanner":
             SecurityScannerPage().render()
+        elif st.session_state.active_tab == "Code Profiler":
+            ProfilerPage().render()

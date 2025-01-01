@@ -1,6 +1,6 @@
 # AI Code Assistant
 
-A sophisticated Streamlit-based application that delivers AI-powered code assistance and security scanning. By leveraging multiple language models and advanced vector search capabilities, the system provides seamless and context-aware support for various code-related tasks.
+A sophisticated Streamlit-based application that delivers AI-powered code assistance, performance profiling, and security scanning. By leveraging multiple language models and advanced vector search capabilities, the system provides seamless and context-aware support for various code-related tasks.
 
 ---
 
@@ -24,6 +24,7 @@ A sophisticated Streamlit-based application that delivers AI-powered code assist
   - Real-time performance monitoring and optimization suggestions.
   - Dependency management and detailed reporting.
   - AI-powered optimization for Python code.
+  - Supports both synchronous and asynchronous code execution.
 
 ### Security Scanner
 - **Advanced Code Security Scanning**
@@ -120,6 +121,7 @@ project/
   - Monitors execution time, memory usage, and CPU utilization.
   - Provides AI-powered optimization suggestions.
   - Generates detailed performance reports.
+  - Supports both synchronous and asynchronous code execution.
 
 ### Documentation Generation
 - **Output Components**:

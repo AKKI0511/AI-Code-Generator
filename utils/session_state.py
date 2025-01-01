@@ -36,7 +36,13 @@ class SessionState:
             st.session_state.filter_severity = ["High", "Medium", "Low"]
         if "scan_result" not in st.session_state:
             st.session_state.scan_result = None
-
+        if 'profiler_code' not in st.session_state:
+            st.session_state.profiler_code = ""
+        if 'profiler_results' not in st.session_state:
+            st.session_state.profiler_results = None
+        if 'input_method' not in st.session_state:
+            st.session_state.input_method = "Enter Code"
+            
     def clear_chat_history():
         st.session_state.chat_history = []
         st.session_state.rerun_trigger = not st.session_state.rerun_trigger
