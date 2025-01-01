@@ -274,7 +274,11 @@ Focus on actionable improvements and quantifiable gains.
             if self.config.report.save_reports:
                 await self._save_reports(reports)
 
-            return reports
+            return {
+                'narrative': analysis.narrative,
+                'profile_report': analysis.profile_report.model_dump(),
+                'reports': reports,
+            }
 
         except Exception as e:
             self.logger.error(f"Report generation failed: {e}")

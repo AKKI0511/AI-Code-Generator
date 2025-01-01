@@ -1,7 +1,7 @@
 import logging
 import asyncio
 from pathlib import Path
-from typing import Dict, Any, Optional, Union
+from typing import Dict, Any, Optional, Union, Callable
 import os
 import time
 import json
@@ -121,37 +121,56 @@ class ProfileHandler:
         return wrapper
 
     @measure_execution_time
-    async def run_code_with_report(self, code: str) -> Dict[str, Any]:
+    async def run_code_with_report(
+        self, 
+        code: str, 
+        progress_callback: Optional[Callable[[float, str], None]] = None
+    ) -> Dict[str, Any]:
         """
         Execute provided code with comprehensive profiling and optimization suggestions.
 
         Args:
             code: Python code to execute and analyze
+            progress_callback: Optional callback function(percentage: float, message: str)
+                             for progress updates
 
         Returns:
             Dictionary containing execution results, metrics, and optimization suggestions
         """
         try:
             # Validate and prepare dependencies
+            if progress_callback:
+                progress_callback(0.1, "Validating dependencies...")
             await self._handle_dependencies(code)
             
             # Execute code with configured limits
+            if progress_callback:
+                progress_callback(0.3, "Executing and profiling code...")
             execution_result = await self._execute_profiled_code(code)
             
             if not execution_result['success']:
                 raise RuntimeError(execution_result.get('error', 'Unknown execution error'))
             
             # Collect and process metrics
+            if progress_callback:
+                progress_callback(0.6, "Collecting performance metrics...")
             metrics = self._collect_analysis_metrics(execution_result, code)
 
             # Generate report if available
             if self.report_generator and self.config.report.save_reports:
+                if progress_callback:
+                    progress_callback(0.8, "Generating optimization report...")
                 await self._generate_and_save_report(execution_result, metrics)
             
             execution_result['metrics'] = metrics
+            
+            if progress_callback:
+                progress_callback(1.0, "Analysis complete!")
             return execution_result
             
         except Exception as e:
+            if progress_callback:
+                progress_callback(1.0, f"Error: {str(e)}")
             self._handle_execution_error(e, code)
         finally:
             # Cleanup temp directory if configured
@@ -254,7 +273,7 @@ class ProfileHandler:
                 metrics=metrics,
                 formats=self.config.report.report_formats
             )
-            execution_result['report'] = report
+            execution_result['llm'] = report
             
             if self.config.report.save_reports:
                 report_path = Path(self.config.report.report_output_dir)
